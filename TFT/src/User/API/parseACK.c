@@ -766,6 +766,15 @@ void parseACK(void)
           ackPopupInfo(echomagic);
         }
       }
+    //Change to PRint Status Screen
+      else if(ack_seen("M117 TFT35 Start Print")){
+        infoHost.printing = true;
+        //startPrint();
+      }
+    //Set Printing Time GCODE
+      else if(ack_seen("M73 P")){
+        setPrintingTime((uint32_t)ack_value());
+      }
     }
 
   parse_end:
